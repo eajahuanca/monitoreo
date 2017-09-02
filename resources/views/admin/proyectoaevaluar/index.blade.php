@@ -7,6 +7,8 @@
 
 @section('stylesheet')
     <link href="{{ asset('plugin/plugins/datatables/dataTables.bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugin/plugins/datatables/responsive/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('plugin/plugins/datatables/responsive/responsive.bootstrap4.min.css') }}" rel="stylesheet">
      <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('plugin/plugins/select2/select2.min.css') }}">
 @endsection
@@ -27,8 +29,8 @@
         </div>
     {!! Form::close() !!}
     <hr class="btn-primary">
-    <table id="myTable" class="table table-bordered table-striped" cellspacing="0" width="100%">
-         <thead>
+    <table id="example" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+        <thead>
             <tr class="btn-primary">
                 <th style="text-align: center !important;">#</th>
                 <th style="text-align: center !important;">H.R.</th>
@@ -84,9 +86,10 @@
 @endsection
 
 @section('javascript')
-
-    <script src="{{ asset('plugin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('plugin/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('plugin/plugins/datatables/responsive/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('plugin/plugins/datatables/responsive/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('plugin/plugins/datatables/responsive/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('plugin/plugins/datatables/responsive/responsive.bootstrap4.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('plugin/plugins/select2/select2.full.min.js') }}"></script>
     <script type="text/javascript">
@@ -94,21 +97,11 @@
             $('.select2').select2();
         })
     </script>
-    <!-- Datatables -->
     <script type="text/javascript">
-        $(function() {
-            $("#myTable").dataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": true,
-                "info": true,
-                "autoWidth": true,
-                "responsive": true
-            });
-        });
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
     </script>
-    <!-- /Datatables -->
     <!--Cargar Datos -->
     <script type="text/javascript">
         $(document).ready(function(){
