@@ -1,9 +1,10 @@
 <div class="col-md-12">
     <div class="form-group {{ $errors->has('proy_hr')?' has-error':'' }}">
+		{!! Form::label('proy_hr', 'Hoja de Ruta', ['class' => 'col-md-12 col-sm-12']) !!}
         <div class="col-md-12 col-sm-12">
             <div class="input-group">
                 <div class="input-group-addon">
-                    <i class="fa fa-wrench"></i> <b>Hoja de Ruta</b>
+                    <i class="fa fa-wrench"></i>
                 </div>
                 {!! Form::text('proy_hr', null, ['placeholder' => 'Ej. E/2017-0034', 'class' => 'form-control']) !!} 
             </div>
@@ -18,10 +19,11 @@
 	<div class="row">
 		<div class="col-md-5 col-xs-12">
 			<div class="form-group {{ $errors->has('entidad_id')?' has-error':'' }}">
+				{!! Form::label('entidad_id', 'Entidad (UE)', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i> <b>Entidad (UE)</b>
+							<i class="fa fa-unlock"></i>
 						</div>
 						{!! Form::select('entidad_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -31,10 +33,11 @@
 	
 		<div class="col-md-5 col-xs-12">
 			<div class="form-group {{ $errors->has('unidad_id')?' has-error':'' }}">
+				{!! Form::label('unidad_id', 'Unidad Proponente', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i> <b>Unidad</b>
+							<i class="fa fa-unlock"></i>
 						</div>
 						{!! Form::select('unidad_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -44,10 +47,11 @@
 
 		<div class="col-md-2 col-xs-12">
 			<div class="form-group {{ $errors->has('proy_sigla')?' has-error':'' }}">
+				{!! Form::label('proy_sigla', 'Sigla Entidad', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-sm-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-wrench"></i> <b>Sigla</b>
+							<i class="fa fa-wrench"></i>
 						</div>
 						{!! Form::text('proy_sigla', null, ['class' => 'form-control', 'id' => 'proy_sigla']) !!} 
 					</div>
@@ -64,10 +68,11 @@
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group {{ $errors->has('departamento_id')?' has-error':'' }}">
+				{!! Form::label('departamento_id', 'Departamento', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i> <b>Departamento</b>
+							<i class="fa fa-unlock"></i>
 						</div>
 						{!! Form::select('departamento_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -77,10 +82,11 @@
 	
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group {{ $errors->has('provincia_id')?' has-error':'' }}">
+				{!! Form::label('provincia_id', 'Provincias', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i> <b>Provincia</b>
+							<i class="fa fa-unlock"></i>
 						</div>
 						{!! Form::select('provincia_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -90,10 +96,11 @@
 
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group {{ $errors->has('municipio_id')?' has-error':'' }}">
+				{!! Form::label('municipio_id', 'Municipio(s)', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i> <b>Municipio</b>
+							<i class="fa fa-unlock"></i>
 						</div>
 						{!! Form::select('municipio_id',['-' => 'Seleccione'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione']) !!}
 					</div>
@@ -105,10 +112,11 @@
 	<div class="row">
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group {{ $errors->has('proy_responsable')?' has-error':'' }}">
+				{!! Form::label('proy_responsable', 'Responsable de Proyecto', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i> <b>Responsable</b>
+							<i class="fa fa-unlock"></i>
 						</div>
 						{!! Form::select('proy_responsable', $responsable, null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -118,10 +126,11 @@
 	
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group {{ $errors->has('proy_monto')?' has-error':'' }}">
+				{!! Form::label('proy_monto', 'Monto solicitado (Bs.)', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i> <b>Monto Solicitado (Bs)</b>
+							<i class="fa fa-unlock"></i>
 						</div>
 						{!! Form::text('proy_monto', null, ['class' => 'form-control']) !!} 
 					</div>
@@ -136,10 +145,11 @@
 
 		<div class="col-md-4 col-xs-12">
 			<div class="form-group {{ $errors->has('proy_tiempo')?' has-error':'' }}">
+				{!! Form::label('proy_tiempo', 'Tiempo estimado (Años)', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-12 col-sm-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-wrench"></i> <b>Tiempo (Años)</b>
+							<i class="fa fa-wrench"></i>
 						</div>
 						{!! Form::number('proy_tiempo', null, ['class' => 'form-control']) !!} 
 					</div>
@@ -156,10 +166,11 @@
 	<div class="row">
 		<div class="col-md-6 col-xs-12">
 			<div class="form-group {{ $errors->has('proy_estado')?' has-error':'' }}">
+				{!! Form::label('proy_estado', 'Estado del Proyecto', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-8 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i> <b>Estado del proyecto</b>
+							<i class="fa fa-unlock"></i>
 						</div>
 						{!! Form::select('proy_estado', [true => 'En Solicitud', false => 'Devuelto'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -169,10 +180,11 @@
 
 		<div class="col-md-6 col-xs-12">
 			<div class="form-group {{ $errors->has('proy_archivo')?' has-error':'' }}">
+				{!! Form::label('proy_archivo', 'Archivo Respaldo', ['class' => 'col-md-12 col-sm-12']) !!}
 				<div class="col-md-8 col-xs-12 pull-right">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-file-pdf-o"></i> <b>Respaldo</b>
+							<i class="fa fa-file-pdf-o"></i>
 						</div>
 						{!! Form::file('proy_archivo', ['class' => 'form-control']) !!}
 					</div>
