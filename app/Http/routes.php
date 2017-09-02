@@ -20,3 +20,8 @@ Route::auth();
 //Route::resource('/home', 'HomeController@index');
 Route::resource('/dashboard', 'DashboardController');
 Route::resource('/aevaluar', 'ProyectoaevaluarController');
+Route::get('/getEntidad', 'EntidadController@getEntidades');
+Route::get('/getDepartamento', 'DepartamentoController@getDepartamentos');
+Route::get('/getUnidad/{id}', 'EunidadController@getUnidades');
+Route::get('/getProvincia/{id}', 'ProvinciaController@getProvincias');
+Route::get('/getMunicipio/{id}', 'MunicipioController@getMunicipios');

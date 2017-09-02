@@ -23,7 +23,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-unlock"></i> <b>Entidad (UE)</b>
 						</div>
-						{!! Form::select('entidad_id', $entidad, null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('entidad_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
 				</div>
 			</div>
@@ -36,7 +36,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-unlock"></i> <b>Unidad</b>
 						</div>
-						{!! Form::select('unidad_id', ['-' => 'Seleccione Proponente'], null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('unidad_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
 				</div>
 			</div>
@@ -49,7 +49,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-wrench"></i> <b>Sigla</b>
 						</div>
-						{!! Form::text('proy_sigla', null, ['class' => 'form-control']) !!} 
+						{!! Form::text('proy_sigla', null, ['class' => 'form-control', 'id' => 'proy_sigla']) !!} 
 					</div>
 					@if($errors->has('proy_sigla'))
 						<span class="help-block">
@@ -69,7 +69,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-unlock"></i> <b>Departamento</b>
 						</div>
-						{!! Form::select('departamento_id', $departamento, null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('departamento_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
 				</div>
 			</div>
@@ -82,7 +82,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-unlock"></i> <b>Provincia</b>
 						</div>
-						{!! Form::select('provincia_id', ['-' => 'Seleccione Provincia'], null, ['class' => 'form-control select2']) !!}
+						{!! Form::select('provincia_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
 				</div>
 			</div>
@@ -95,7 +95,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-unlock"></i> <b>Municipio</b>
 						</div>
-						{!! Form::select('municipio_id',['-'=>'Seleccione','x'=>'Mayor','y'=>'menor'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione']) !!}
+						{!! Form::select('municipio_id',['-' => 'Seleccione'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione']) !!}
 					</div>
 				</div>
 			</div>

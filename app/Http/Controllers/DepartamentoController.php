@@ -5,24 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Departamento;
+use Carbon\Carbon;
 
 class DepartamentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        Carbon::setLocale('es');
+    }
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getDepartamentos(Request $request)
+    {
+        if($request->ajax())
+        {
+            $rpta = Departamento::select('id','dep_nombre')->where('dep_estado',1)->orderBy('dep_nombre','ASC')->get();
+            return response()->json($rpta);
+        }
+    }
+    
     public function create()
     {
         //

@@ -13,6 +13,7 @@ use App\Municipio;
 use App\User;
 use App\Proyectoaevaluar;
 use Carbon\Carbon;
+use DB;
 
 class ProyectoaevaluarController extends Controller
 {
@@ -23,14 +24,10 @@ class ProyectoaevaluarController extends Controller
 
     public function index()
     {
-        $responsable = User::where('us_estado', 1)->orderBy('us_paterno','ASC')->lists('us_paterno','id');
+        $responsable = User::select(DB::raw('CONCAT(us_paterno," ",us_materno," ",us_nombre) as responsable'), 'id')->where('us_estado', 1)->orderBy('responsable','ASC')->lists('responsable','id');
         $proyecto = Proyectoaevaluar::orderBy('created_at','DESC')->get();
-        $entidad = Entidad::where('ent_estado',1)->orderBy('ent_nombre', 'ASC')->lists('ent_nombre','id');
-        $departamento = Departamento::where('dep_estado',1)->orderBy('dep_nombre','ASC')->lists('dep_nombre','id');
         return view('admin.proyectoaevaluar.index')
                 ->with('proyecto', $proyecto)
-                ->with('departamento', $departamento)
-                ->with('entidad', $entidad)
                 ->with('responsable', $responsable);
     }
 
@@ -43,7 +40,7 @@ class ProyectoaevaluarController extends Controller
     {
         if($request->ajax())
         {
-            
+
         }
     }
 

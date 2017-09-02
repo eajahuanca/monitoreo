@@ -6,7 +6,6 @@
 @section('FormularioDetalle','Proyectos')
 
 @section('stylesheet')
-    <link href="{{ asset('plugin/chosen/chosen.min.css') }}" rel="stylesheet"><link rel="stylesheet" href="{{ asset('/select2/dist/css/select2.min.css') }}">
     <link href="{{ asset('plugin/plugins/datatables/dataTables.bootstrap.css') }}" rel="stylesheet">
      <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('plugin/plugins/select2/select2.min.css') }}">
@@ -14,12 +13,16 @@
 
 @section('ContenidoPagina')
 
-    {!! Form::open(['route' => 'aevaluar.store', 'method' => 'POST', 'class' => 'form-horizontal', 'files' => true]) !!}
+    {!! Form::open(['id' => 'formProyectos', 'class' => 'form-horizontal', 'files' => true]) !!}
         @include('admin.proyectoaevaluar.formCreate')
         <div class="form-group">
             <center>
-                <span class="hint--top  hint--success" aria-label="Guardar los datos"><button type="submit" class="btn btn-success col-xs-12"><i class="fa fa-save"></i> Guardar</button></span>
-                <span class="hint--top  hint--error" aria-label="Cancelar el registro"><button type="reset" class="btn btn-danger col-xs-12"><i class="fa fa-reply-all"></i> Cancelar</button></span>
+                <span class="hint--top  hint--success" aria-label="Guardar los datos del Proyecto a Evaluar">
+                    {!! link_to('#','Guardar', ['id' => 'GrabarProyecto', 'class' => 'btn btn-success col-xs-12']) !!}
+                </span>
+                <span class="hint--top  hint--error" aria-label="Cancelar el registro">
+                    <button type="reset" class="btn btn-danger col-xs-12">Cancelar</button>
+                </span>
             </center>
         </div>
     {!! Form::close() !!}
@@ -81,29 +84,16 @@
 @endsection
 
 @section('javascript')
+
     <script src="{{ asset('plugin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('plugin/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
     <!-- Select2 -->
     <script src="{{ asset('plugin/plugins/select2/select2.full.min.js') }}"></script>
-    <script src="{{ asset('plugin/chosen/chosen.jquery.min.js') }}"></script>
     <script type="text/javascript">
         $(function () {
             $('.select2').select2();
         })
     </script>
-    <script type="text/javascript">
-        var config = {
-            '.chosen-select'           : {},
-            '.chosen-select-deselect'  : {allow_single_deselect:true},
-            '.chosen-select-no-single' : {disable_search_threshold:10},
-            '.chosen-select-no-results': {no_results_text:'Oops, Sin Resultados!'},
-            '.chosen-select-width'     : {width:"100%"}
-        }
-        for (var selector in config) {
-            $(selector).chosen(config[selector]);
-        }
-    </script>
-
     <!-- Datatables -->
     <script type="text/javascript">
         $(function() {
@@ -113,9 +103,99 @@
                 "searching": true,
                 "ordering": true,
                 "info": true,
-                "autoWidth": true
+                "autoWidth": true,
+                "responsive": true
             });
         });
     </script>
     <!-- /Datatables -->
+    <!--Cargar Datos -->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("select[name=unidad_id]").empty();
+            $("select[name=unidad_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Proponente</option>");
+            $("select[name=provincia_id]").empty();
+            $("select[name=provincia_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
+            $("select[name=municipio_id]").empty();
+            $("select[name=municipio_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Municipio</option>");
+            //Entidades
+            $.ajax({
+                url: "{{ url('/getEntidad') }}",
+                type: "get",
+                datatype: "json",
+                success: function(rpta){
+                    $("select[name=entidad_id]").empty();
+                    $("select[name=entidad_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Entidad</option>");
+                    $.each(rpta, function(index, value){
+                        $("select[name=entidad_id]").append("<option value='" + value['id'] + "'>" + value['ent_nombre'] + "</option>");
+                    });
+                }
+            });
+            //Departamentos
+            $.ajax({
+                url: "{{ url('/getDepartamento') }}",
+                type: "get",
+                datatype: "json",
+                success: function(rpta){
+                    $("select[name=departamento_id]").empty();
+                    $("select[name=departamento_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Departamento</option>");
+                    $.each(rpta, function(index, value){
+                        $("select[name=departamento_id]").append("<option value='" + value['id'] + "'>" + value['dep_nombre'] + "</option>");
+                    });
+                }
+            });
+            //Unidad Proponente
+            $("select[name=entidad_id]").change(function(){
+                var entidadID = $("select[name=entidad_id]").val();
+                $.ajax({
+                    url: "{{ url('/getUnidad', '"+ entidadID +"') }}",
+                    type: "get",
+                    datatype: "json",
+                    data: {"entidadID" : entidadID},
+                    success: function(rpta){
+                        $("select[name=unidad_id]").empty();
+                        $("select[name=unidad_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Proponente</option>");
+                        $.each(rpta, function(index, value){
+                            $("select[name=unidad_id]").append("<option value='" + value['id'] + "'>" + value['uni_nombre'] + "</option>");
+                            $("#proy_sigla").val(value['ent_sigla']);
+                        });
+                    }
+                });
+            });
+            //Provincia
+            $("select[name=departamento_id]").change(function(){
+                var departamentoID = $("select[name=departamento_id]").val();
+                $.ajax({
+                    url: "{{ url('/getProvincia', '"+ departamentoID +"') }}",
+                    type: "get",
+                    datatype: "json",
+                    data: {"departamentoID" : departamentoID},
+                    success: function(rpta){
+                        $("select[name=provincia_id]").empty();
+                        $("select[name=provincia_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
+                        $.each(rpta, function(index, value){
+                            $("select[name=provincia_id]").append("<option value='" + value['id'] + "'>" + value['prov_nombre'] + "</option>");
+                        });
+                    }
+                });
+            });
+            //Municipio
+            $("select[name=provincia_id]").change(function(){
+                var provinciaID = $("select[name=provincia_id]").val();
+                $.ajax({
+                    url: "{{ url('/getMunicipio', '"+ provinciaID +"') }}",
+                    type: "get",
+                    datatype: "json",
+                    data: {"provinciaID" : provinciaID},
+                    success: function(rpta){
+                        $("select[name=municipio_id]").empty();
+                        $("select[name=municipio_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Municipio</option>");
+                        $.each(rpta, function(index, value){
+                            $("select[name=municipio_id]").append("<option value='" + value['id'] + "'>" + value['mun_nombre'] + "</option>");
+                        });
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

@@ -5,24 +5,31 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Eunidad;
+use App\Entidad;
+use Carbon\Carbon;
 
 class EunidadController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        Carbon::setLocale('es');
+    }
+
     public function index()
     {
         //
     }
+    
+    public function getUnidades(Request $request)
+    {
+        if($request->ajax())
+        {
+            $rpta = Eunidad::leftJoin("entidades","entidad_unidades.entidad_id","=","entidades.id")->where('uni_estado',1)->where('entidad_id','=', $request->entidadID)->select('entidad_unidades.id','entidad_unidades.uni_nombre','entidades.ent_sigla')->get();
+            return response()->json($rpta);
+        }
+    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //

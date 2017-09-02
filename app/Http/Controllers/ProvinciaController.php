@@ -5,24 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Provincia;
+use Carbon\Carbon;
 
 class ProvinciaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        Carbon::setLocale('es');
+    }
+
     public function index()
     {
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function getProvincias(Request $request)
+    {
+        if($request->ajax())
+        {
+            $rpta = Provincia::select('id','prov_nombre')->where('prov_estado',1)->where('departamento_id','=', $request->departamentoID)->orderBy('prov_nombre','ASC')->get();
+            return response()->json($rpta);
+        }
+    }
+
     public function create()
     {
         //

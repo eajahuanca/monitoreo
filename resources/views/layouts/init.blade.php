@@ -15,16 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- daterange picker -->
-    <link rel="stylesheet" href="{{ asset('plugin/plugins/daterangepicker/daterangepicker.css') }}">
-    <!-- bootstrap datepicker -->
-    <link rel="stylesheet" href="{{ asset('plugin/plugins/datepicker/datepicker3.css') }}">
-    <!-- iCheck for checkboxes and radio inputs -->
-    <link rel="stylesheet" href="{{ asset('plugin/plugins/iCheck/all.css') }}">
-    <!-- Bootstrap Color Picker -->
-    <link rel="stylesheet" href="{{ asset('plugin/plugins/colorpicker/bootstrap-colorpicker.min.css') }}">
-    <!-- Bootstrap time Picker -->
-    <link rel="stylesheet" href="{{ asset('plugin/plugins/timepicker/bootstrap-timepicker.min.css') }}">
     <!-- Select2 -->
     <link rel="stylesheet" href="{{ asset('plugin/plugins/select2/select2.min.css') }}">
 
@@ -221,14 +211,7 @@
     <!-- jQuery 2.2.3 -->
     <script src="{{ asset('plugin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
     <!-- Bootstrap 3.3.6 -->
-    <script src="{{ asset('plugin/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('plugin/plugins/daterangepicker/daterangepicker.js') }}"></script>
-    <!-- bootstrap datepicker -->
-    <script src="{{ asset('plugin/plugins/datepicker/bootstrap-datepicker.js') }}"></script>
-    <!-- bootstrap color picker -->
-    <script src="{{ asset('plugin/plugins/colorpicker/bootstrap-colorpicker.min.js') }}"></script>
-    <!-- bootstrap time picker -->
-    <script src="{{ asset('plugin/plugins/timepicker/bootstrap-timepicker.min.js') }}"></script>  
+    <script src="{{ asset('plugin/bootstrap/js/bootstrap.min.js') }}"></script> 
     <!-- SlimScroll 1.3.0 -->
     <script src="{{ asset('plugin/plugins/slimScroll/jquery.slimscroll.min.js') }}"></script>
     <!-- FastClick -->
