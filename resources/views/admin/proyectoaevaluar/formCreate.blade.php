@@ -4,7 +4,7 @@
         <div class="col-md-12 col-sm-12">
             <div class="input-group">
                 <div class="input-group-addon">
-					<i class="fa fa-wrench"></i>
+					<i class="fa fa-bars"></i>
                 </div>
                 {!! Form::text('proy_hr', null, ['placeholder' => 'Ej. E/2017-0034', 'class' => 'form-control']) !!} 
             </div>
@@ -23,7 +23,7 @@
 				<div class="col-md-10 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i>
+							<i class="fa fa-server"></i>
 						</div>
 						{!! Form::select('entidad_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -47,7 +47,7 @@
 				<div class="col-md-10 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i>
+							<i class="fa fa-server"></i>
 						</div>
 						{!! Form::select('unidad_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -71,7 +71,7 @@
 				<div class="col-md-12 col-sm-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-wrench"></i>
+							<i class="fa fa-list"></i>
 						</div>
 						{!! Form::text('proy_sigla', null, ['class' => 'form-control', 'id' => 'proy_sigla']) !!} 
 					</div>
@@ -92,7 +92,7 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i>
+							<i class="fa fa-th"></i>
 						</div>
 						{!! Form::select('departamento_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -111,7 +111,7 @@
 				<div class="col-md-10 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i>
+							<i class="fa fa-th"></i>
 						</div>
 						{!! Form::select('provincia_id', ['-' => 'Seleccione'], null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -135,7 +135,7 @@
 				<div class="col-md-10 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i>
+							<i class="fa fa-th"></i>
 						</div>
 						{!! Form::select('municipio_id',['-' => 'Seleccione'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione']) !!}
 					</div>
@@ -161,7 +161,7 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i>
+							<i class="fa fa-user"></i>
 						</div>
 						{!! Form::select('proy_responsable', $responsable, null, ['class' => 'form-control select2']) !!}
 					</div>
@@ -175,7 +175,7 @@
 				<div class="col-md-12 col-xs-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-unlock"></i>
+							<i class="fa"><b>Bs</b></i>
 						</div>
 						{!! Form::text('proy_monto', null, ['class' => 'form-control']) !!} 
 					</div>
@@ -194,7 +194,7 @@
 				<div class="col-md-12 col-sm-12">
 					<div class="input-group">
 						<div class="input-group-addon">
-							<i class="fa fa-wrench"></i>
+							<i class="fa fa-clock-o"></i>
 						</div>
 						{!! Form::number('proy_tiempo', null, ['class' => 'form-control']) !!} 
 					</div>
@@ -225,7 +225,7 @@
 
 		<div class="col-md-6 col-xs-12">
 			<div class="form-group {{ $errors->has('proy_archivo')?' has-error':'' }}">
-				{!! Form::label('proy_archivo', 'Archivo Respaldo', ['class' => 'col-md-12 col-sm-12']) !!}
+				{!! Form::label('proy_archivo', 'Archivo Respaldo', ['class' => 'col-md-12 col-sm-12 text-right']) !!}
 				<div class="col-md-8 col-xs-12 pull-right">
 					<div class="input-group">
 						<div class="input-group-addon">

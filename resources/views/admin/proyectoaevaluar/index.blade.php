@@ -33,6 +33,8 @@
         <thead>
             <tr class="btn-primary">
                 <th style="text-align: center !important;">#</th>
+                <th style="text-align: center !important;">Acción</th>
+                <th style="text-align: center !important;">Estado</th>
                 <th style="text-align: center !important;">H.R.</th>
                 <th style="text-align: center !important;">Proyecto (Entidad)</th>
                 <th style="text-align: center !important;">Unidad Proponente</th>
@@ -41,8 +43,6 @@
                 <th style="text-align: center !important;">Archivo</th>
                 <th style="text-align: center !important;">Tiempo Estimado</th>
                 <th style="text-align: center !important;">Responsable</th>
-                <th style="text-align: center !important;">Estado</th>
-                <th style="text-align: center !important;">Acción</th>
             </tr>
         </thead>
         <tbody>
@@ -50,28 +50,7 @@
             @foreach($proyecto as $item)
             <tr id="{{ $item->id }}">
                 <td>{{ $contadorFilas++ }}</td>
-                <td align="center" valign="middle">{{ $item->proy_hr }}</td>
-				<td>{{ $item->entidad->ent_nombre }}</td>
-				<td>{{ $item->eunidad->uni_nombre }}</td>
-                <td>{{ $item->departamento->dep_nombre.' '.$item->provincia->prov_nombre.' '.$item->municipio->mun_nombre }}</td>
-                <td>{{ $item->proy_monto }}</td>
-                <td>
-					@if($item->proy_archivo)
-						<a href="" class="fa fa-file-pdf"><span class="hint--top  hint--success" aria-label="Descargar Archivo"></span></a>
-					@else
-						{{ 'Sin Archivo' }}
-					@endif
-				</td>
-                <td align="center">{{ $item->proy_tiempo.' Años' }}</td>
-                <td align="justify">{{ $item->responsable->us_nombre.' '.$item->responsable->us_paterno.' '.$item->responsable->us_materno }}</td>
-				<td align="center">
-                    @if(!$item->proy_estado)
-                        <span class="hint--top  hint--warning" aria-label="Proyecto en solicitud"><button class="btn btn-warning btn-xs">En Solicitud</button></span>
-                    @else
-                        <span class="hint--top  hint--error" aria-label="Proyecto Devuelto a la entidad"><button class="btn btn-danger btn-xs">Devuelto</button></span>
-                    @endif
-                </td>
-				<td align="center">
+                <td align="left">
 					<div class="form-horizontal">
                         <span class="hint--top  hint--info" aria-label="Modificar Datos del Proyecto"><a href="{{ route('aevaluar.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></span>
 						@if(!$item->proy_estado)
@@ -79,6 +58,27 @@
 						@endif
                     </div>
 				</td>
+                <td align="center">
+                    @if(!$item->proy_estado)
+                        <span class="hint--top  hint--warning" aria-label="Proyecto en solicitud"><button class="btn btn-warning btn-xs">En Solicitud</button></span>
+                    @else
+                        <span class="hint--top  hint--error" aria-label="Proyecto Devuelto a la entidad"><button class="btn btn-danger btn-xs">Devuelto</button></span>
+                    @endif
+                </td>
+                <td align="center" valign="middle">{{ $item->proy_hr }}</td>
+				<td>{{ $item->entidad->ent_nombre }}</td>
+				<td style="width:50px !important;">{{ $item->eunidad->uni_nombre }}</td>
+                <td>{{ $item->departamento->dep_nombre.' '.$item->provincia->prov_nombre.' '.$item->municipio->mun_nombre }}</td>
+                <td align="right">{{ number_format($item->proy_monto, 2, ',', '.').' Bs.' }}</td>
+                <td>
+					@if($item->proy_archivo)
+						<span class="hint--top  hint--error" aria-label="Descargar Archivo"><a href="" class="fa fa-file-pdf-o"></a></span>
+					@else
+						{{ 'Sin Archivo' }}
+					@endif
+				</td>
+                <td align="right">{{ $item->proy_tiempo.' Años' }}</td>
+                <td align="justify">{{ $item->responsable->us_nombre.' '.$item->responsable->us_paterno.' '.$item->responsable->us_materno }}</td>
             </tr>
             @endforeach
         </tbody>
