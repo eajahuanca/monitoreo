@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\\Support\Facades\Auth;
 
 use App\Http\Requests;
+use App\Http\Requests\ProyectoaevaluarRequest;
 use App\Entidad;
 use App\Eunidad;
 use App\Departamento;
@@ -36,11 +38,22 @@ class ProyectoaevaluarController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(ProyectoaevaluarRequest $request)
     {
         if($request->ajax())
         {
-
+            try
+            {
+                $proyecto = new Proyectoaevaluar($request->all());
+                $proyecto->user_registra = Auth::user()->id;
+                $proyecto->user_actualiza = Auth::user()->id;
+                $proyecto->save();
+                flash('Los Datos del Proyecto a Evaluar, fueron registrados de manera satisfactoria', 'success');
+            }
+            catch(\Exception $ex)
+            {
+                flash('Ocurrió un problema al intentar guardar el proyecto en el sistema, error: '.$ex->getMessage(), 'danger');
+            }
         }
     }
 
