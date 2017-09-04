@@ -5,9 +5,6 @@
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Styles -->
-        <link href="/css/app.css" rel="stylesheet">
-
         <title>Login</title>
     
         <link rel="stylesheet" href="{{ asset('plugin/login/css/normalize.css') }}">
@@ -202,9 +199,7 @@
         <script src="{{ asset('plugin/login/js/prefixfree.min.js') }}"></script>
         <!-- Scripts -->
         <script>
-            window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-            ]); ?>
+            window.Laravel = <?php echo json_encode(['csrfToken' => csrf_token()]); ?>
         </script>
     </head>
 <body>
@@ -244,7 +239,7 @@
         </form>
     </div>
 
-    <script src="{{ asset('plugin/login/js/index.js') }}"></script>
+  
 
 </body>
 </html>

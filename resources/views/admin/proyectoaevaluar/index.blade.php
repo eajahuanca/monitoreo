@@ -191,4 +191,30 @@
             });
         });
     </script>
+    <!--Validacion y Envio de Datos-->
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $("#GrabarProyecto").click(function(event){
+                event.preventDefault();
+                var dataString = $("#formProyectos").serialize();
+                var token = $("input[name=_token]").val();
+                var route = "{{ route('aevaluar.store')}}";
+                $.ajax({
+                    url: route,
+                    headers: {'X-CSRF-TOKEN':token},
+                    type: 'post',
+                    datatype: 'json',
+                    data: dataString,
+                    success: function(data){
+
+                    },
+                    error:function(data){
+                        console.log(data);
+                    }
+                });
+
+                alert('aqui');
+            });
+        });
+    </script>
 @endsection
