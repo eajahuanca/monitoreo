@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\EntidadRequest;
 use App\Http\Requests;
 use App\Entidad;
 use Carbon\Carbon;
+use Session;
 
 class EntidadController extends Controller
 {
@@ -53,7 +56,7 @@ class EntidadController extends Controller
         catch(\Exception $ex)
         {
             $title = 'Error en Registro';
-            $msg = 'No se puede reallizar el registro';
+            $msg = 'No se puede realizar el registro';
         }
         Session::put('estado', $estado);
         Session::put('title', $title);
