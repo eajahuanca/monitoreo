@@ -14,7 +14,7 @@
 @endsection
 
 @section('ContenidoPagina')
-
+    
     {!! Form::open(['id' => 'formProyectos', 'class' => 'form-horizontal', 'files' => true]) !!}
         @include('admin.proyectoaevaluar.formCreate')
         <div class="form-group">
@@ -53,13 +53,13 @@
                 <td align="left">
 					<div class="form-horizontal">
                         <span class="hint--top  hint--info" aria-label="Modificar Datos del Proyecto"><a href="{{ route('aevaluar.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></span>
-						@if(!$item->proy_estado)
+						@if($item->proy_estado)
                         	<span class="hint--top  hint--error" aria-label="Devolver Proyecto a Entidad"><a href="{{ route('aevaluar.destroy', $item->id) }}" class="btn btn-danger btn-xs"><i class="fa fa-reply-all"></i></a></span>
 						@endif
                     </div>
 				</td>
                 <td align="center">
-                    @if(!$item->proy_estado)
+                    @if($item->proy_estado)
                         <span class="hint--top  hint--warning" aria-label="Proyecto en solicitud"><button class="btn btn-warning btn-xs">En Solicitud</button></span>
                     @else
                         <span class="hint--top  hint--error" aria-label="Proyecto Devuelto a la entidad"><button class="btn btn-danger btn-xs">Devuelto</button></span>
@@ -206,15 +206,87 @@
                     datatype: 'json',
                     data: dataString,
                     success: function(data){
-
+                        if(data.success == 'true')
+                        {
+                            location.reload();
+                        }
+                        else
+                        {
+                            toastr["error"]("No se puede registrar el proyecto.", "Error en Registro");
+                        }
                     },
                     error:function(data){
-                        console.log(data);
+                        toastr["error"]("Existen campos del formulario que no cumplen las condiciones.", "Error en el Formulario");
+                        if(data.responseJSON.proy_hr)
+                        { $("#error1").html(data.responseJSON.proy_hr); }
+                        else
+                        { $("#error1").html(""); }
+                        $("#msg-error1").fadeIn();
+                        
+                        if(data.responseJSON.entidad_id)
+                        { $("#error2").html(data.responseJSON.entidad_id); }
+                        else
+                        { $("#error2").html(""); }
+                        $("#msg-error2").fadeIn();
+
+                        if(data.responseJSON.unidad_id)
+                        { $("#error3").html(data.responseJSON.unidad_id); }
+                        else
+                        { $("#error3").html(""); }
+                        $("#msg-error3").fadeIn();
+
+                        if(data.responseJSON.proy_sigla)
+                        { $("#error4").html(data.responseJSON.proy_sigla); }
+                        else
+                        { $("#error4").html(""); }
+                        $("#msg-error4").fadeIn();
+
+                        if(data.responseJSON.departamento_id)
+                        { $("#error5").html(data.responseJSON.departamento_id); }
+                        else
+                        { $("#error5").html(""); }
+                        $("#msg-error5").fadeIn();
+
+                        if(data.responseJSON.provincia_id) 
+                        { $("#error6").html(data.responseJSON.provincia_id); }
+                        else
+                        { $("#error6").html(""); }
+                        $("#msg-error6").fadeIn();
+
+                        if(data.responseJSON.municipio_id)
+                        { $("#error7").html(data.responseJSON.municipio_id); }
+                        else
+                        { $("#error7").html(""); }
+                        $("#msg-error7").fadeIn();
+
+                        if(data.responseJSON.proy_monto)
+                        { $("#error8").html(data.responseJSON.proy_monto); }
+                        else
+                        { $("#error8").html(""); }
+                        $("#msg-error8").fadeIn();
+
+                        if(data.responseJSON.proy_tiempo)
+                        { $("#error9").html(data.responseJSON.proy_tiempo); }
+                        else
+                        { $("#error9").html(""); }
+                        $("#msg-error9").fadeIn();
+
+                        if(data.responseJSON.proy_archivo)
+                        { $("#error10").html(data.responseJSON.proy_archivo); }
+                        else
+                        { $("#error10").html(""); }
+                        $("#msg-error10").fadeIn();
                     }
                 });
-
-                alert('aqui');
             });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            @if(Session::get('active'))
+                toastr["success"]("Registro de Proyecto a Evaluar", "Se realizo el registro de manera satisfactoria.");
+                {{ Session::forget('active') }}
+            @endif
         });
     </script>
 @endsection

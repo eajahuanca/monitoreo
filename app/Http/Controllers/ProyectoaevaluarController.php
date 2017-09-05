@@ -16,6 +16,7 @@ use App\User;
 use App\Proyectoaevaluar;
 use Carbon\Carbon;
 use DB;
+use Session;
 
 class ProyectoaevaluarController extends Controller
 {
@@ -48,11 +49,12 @@ class ProyectoaevaluarController extends Controller
                 $proyecto->user_registra = Auth::user()->id;
                 $proyecto->user_actualiza = Auth::user()->id;
                 $proyecto->save();
-                flash('Los Datos del Proyecto a Evaluar, fueron registrados de manera satisfactoria', 'success');
+                Session::put('active', '1');
+                return response()->json(['success' => 'true']);
             }
             catch(\Exception $ex)
             {
-                flash('Ocurrió un problema al intentar guardar el proyecto en el sistema, error: '.$ex->getMessage(), 'danger');
+                return response()->json(['success' => 'false']);
             }
         }
     }

@@ -25,6 +25,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{ asset('plugin/dist/css/skins/_all-skins.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugin/hint.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugin/toast/toastr.min.css') }}">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -174,7 +175,7 @@
                     <li class="active">@yield('FormularioActual')</li>
                 </ol>
             </section>
-            @include('flash::message')
+           
             <!-- Main content -->
             <section class="content">
                 <div class="box box-primary">
@@ -220,8 +221,29 @@
     <script src="{{ asset('plugin/dist/js/app.min.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('plugin/dist/js/demo.js') }}"></script>
+    <script src="{{ asset('plugin/toast/toastr.min.js') }}"></script>
 
     <!-- Page script -->
     @yield('javascript')
+   
+    <script>
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
 </body>
 </html>
