@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\ProvinciaRequest;
 use App\Http\Requests;
+use App\Departamento;
 use App\Provincia;
 use Carbon\Carbon;
+use Session;
 
 class ProvinciaController extends Controller
 {
@@ -17,7 +21,8 @@ class ProvinciaController extends Controller
 
     public function index()
     {
-        //
+        $provincia = Provincia::orderBy('created_at','DESC')->get();
+        return view('admin.provincia.index')->with('provincia', $provincia);
     }
 
     public function getProvincias(Request $request)
@@ -31,62 +36,68 @@ class ProvinciaController extends Controller
 
     public function create()
     {
-        //
+        $departamento = Departamento::where('dep_estado','=',1)->orderBy('dep_nombre','ASC')->lists('dep_nombre','id');
+        return view('admin.provincia.create')->with('departamento', $departamento);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(ProvinciaRequest $request)
     {
-        //
+        $title = '';
+        $msg = '';
+        $estado = false;
+        try
+        {
+            $provincia = new Provincia($request->all());
+            $provincia->user_registra = Auth::user()->id;
+            $provincia->user_actualiza = Auth::user()->id;
+            $provincia->save();
+            $title = 'Registro de Provincia';
+            $msg = 'Se realizo el registro de manera satisfactoria';
+            $estado = true;
+        }
+        catch(\Exception $ex)
+        {
+            $title = 'Error en Registro';
+            $msg = 'No se puede realizar el registro';
+        }
+        Session::put('estado', $estado);
+        Session::put('title', $title);
+        Session::put('msg', $msg);
+        return redirect()->route('provincia.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $departamento = Departamento::where('dep_estado','=',1)->orderBy('dep_nombre','ASC')->lists('dep_nombre','id');
+        $provincia = Provincia::find($id);
+        return view('admin.provincia.edit')
+                ->with('provincia', $provincia)
+                ->with('departamento', $departamento);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(ProvinciaRequest $request, $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $estado = false;
+        $title = '';
+        $msg = '';
+        try
+        {
+            $provincia = Provincia::find($id);
+            $provincia->fill($request->all());
+            $provincia->user_actualiza = Auth::user()->id;
+            $provincia->update();
+            $estado = true;
+            $title = 'Actualización de Provincia';
+            $msg = 'Se realizo la actualización de manera satisfactoria.';
+        }
+        catch(\Exception $ex)
+        {
+            $title = 'Error en Actualización';
+            $msg = 'No se puede actualizar la Provincia.';
+        }
+        Session::put('estado', $estado);
+        Session::put('title', $title);
+        Session::put('msg', $msg);
+        return redirect()->route('provincia.index');
     }
 }
