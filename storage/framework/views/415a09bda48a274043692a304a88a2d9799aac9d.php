@@ -73,7 +73,7 @@
                 <td align="right"><?php echo e(number_format($item->proy_monto, 2, ',', '.').' Bs.'); ?></td>
                 <td>
 					<?php if($item->proy_archivo): ?>
-						<span class="hint--top  hint--error" aria-label="Descargar Archivo"><a href="<?php echo e(asset($item->proy_archivo)); ?>" target="_blank" class="fa fa-file-pdf-o"></a></span>
+						<span class="hint--top  hint--error" aria-label="Descargar Archivo"><a href="<?php echo e(asset($item->proy_archivo)); ?>" target="_blank   " class="fa fa-file-pdf-o"></a></span>
 					<?php else: ?>
 						<?php echo e('Sin Archivo'); ?>
 
