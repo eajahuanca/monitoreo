@@ -53,44 +53,9 @@ return [
             'root' => public_path('storage/usuarios'),
         ],
 
-        'banners' => [
+        'proyectoaevaluar' => [
             'driver' => 'local',
-            'root' => public_path('storage/banners'),
-        ],
-
-        'biografias' => [
-            'driver' => 'local',
-            'root' => public_path('storage/biografias'),
-        ],
-
-        'eventos' => [
-            'driver' => 'local',
-            'root' => public_path('storage/eventos'),
-        ],
-
-        'galerias' => [
-            'driver' => 'local',
-            'root' => public_path('storage/galerias'),
-        ],
-
-        'leyes' => [
-            'driver' => 'local',
-            'root' => public_path('storage/leyes'),
-        ],
-
-        'logos' => [
-            'driver' => 'local',
-            'root' => public_path('storage/logos'),
-        ],
-
-        'noticias' => [
-            'driver' => 'local',
-            'root' => public_path('storage/noticias'),
-        ],
-
-        'pdfs' => [
-            'driver' => 'local',
-            'root' => public_path('storage/pdfs'),
+            'root' => public_path('storage/proyectoaevaluar'),
         ],
 
         'public' => [
