@@ -17,7 +17,8 @@ class EntidadController extends Controller
 
     public function index()
     {
-        //
+        $entidad = Entidad::orderBy('created_at','DESC')->get();
+        return view('admin.entidad.index')->with('entidad', $entidad);
     }
 
     public function getEntidades(Request $request)
@@ -31,62 +32,64 @@ class EntidadController extends Controller
 
     public function create()
     {
-        //
+        return view('admin.entidad.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(EntidadRequest $request)
     {
-        //
+        $title = '';
+        $msg = '';
+        $estado = false;
+        try
+        {
+            $entidad = new Entidad($request->all());
+            $entidad->user_registra = Auth::user()->id;
+            $entidad->user_actualiza = Auth::user()->id;
+            $entidad->save();
+            $title = 'Registro de Entidad';
+            $msg = 'Se realizo el registro de manera satisfactoria';
+            $estado = true;
+        }
+        catch(\Exception $ex)
+        {
+            $title = 'Error en Registro';
+            $msg = 'No se puede reallizar el registro';
+        }
+        Session::put('estado', $estado);
+        Session::put('title', $title);
+        Session::put('msg', $msg);
+        return redirect()->route('entidad.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $entidad = Entidad::find($id);
+        return view('admin.entidad.edit')->with('entidad', $entidad);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(EntidadRequest $request, $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $estado = false;
+        $title = '';
+        $msg = '';
+        try
+        {
+            $entidad = Entidad::find($id);
+            $entidad->fill($request->all());
+            $entidad->user_actualiza = Auth::user()->id;
+            $entidad->update();
+            $estado = true;
+            $title = 'Actualización de Entidad';
+            $msg = 'Se realizo la actualización de manera satisfactoria.';
+        }
+        catch(\Exception $ex)
+        {
+            $title = 'Error en Actualización';
+            $msg = 'No se puede actualizar la Entidad.';
+        }
+        Session::put('estado', $estado);
+        Session::put('title', $title);
+        Session::put('msg', $msg);
+        return redirect()->route('entidad.index');
     }
 }
