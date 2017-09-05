@@ -198,7 +198,8 @@
         $(document).ready(function(){
             $("#GrabarProyecto").click(function(event){
                 event.preventDefault();
-                var dataString = $("#formProyectos").serialize();
+                //var dataString = $("#formProyectos").serialize();
+                var dataString = new FormData(document.getElementById("formProyectos"));// $("#formProyectos").serialize();
                 var token = $("input[name=_token]").val();
                 var route = "<?php echo e(route('aevaluar.store')); ?>";
                 $.ajax({
@@ -207,6 +208,9 @@
                     type: 'post',
                     datatype: 'json',
                     data: dataString,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
                     success: function(data){
                         if(data.success == 'true')
                         {
@@ -214,7 +218,9 @@
                         }
                         else
                         {
-                            toastr["error"]("No se puede registrar el proyecto.", "Error en Registro");
+                            var msg = data.success;
+                            //"No se puede registrar el proyecto."
+                            toastr["error"](msg, "Error en Registro");
                         }
                     },
                     error:function(data){

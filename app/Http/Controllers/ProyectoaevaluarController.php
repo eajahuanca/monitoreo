@@ -54,13 +54,14 @@ class ProyectoaevaluarController extends Controller
             }
             catch(\Exception $ex)
             {
-                return response()->json(['success' => 'false']);
+                $valor = $ex->getMessage();
+                return response()->json(['success' => $valor]);
             }
         }
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified resource
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

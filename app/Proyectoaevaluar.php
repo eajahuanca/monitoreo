@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use File;
+use Storage;
 
 class Proyectoaevaluar extends Model
 {
@@ -61,7 +63,7 @@ class Proyectoaevaluar extends Model
                             Carbon::now()->minute.
                             Carbon::now()->second.'.'.
                             $archivo->getClientOriginalExtension();
-            $this->attributes['us_foto'] = 'storage/proyectoaevaluar/'.$nuevoNombre;
+            $this->attributes['proy_archivo'] = 'storage/proyectoaevaluar/'.$nuevoNombre;
             $storage = Storage::disk('proyectoaevaluar')->put($nuevoNombre,\File::get($archivo));
         }
     }
