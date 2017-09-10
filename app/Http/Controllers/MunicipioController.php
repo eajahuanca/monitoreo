@@ -21,17 +21,19 @@ class MunicipioController extends Controller
 
     public function index()
     {
-        $$municipio = $municipio::orderBy('created_at','DESC')->get();
-        return view('admin.$municipio.index')->with('$municipio', $$municipio);
+        $$municipio = Municipio::orderBy('created_at','DESC')->get();
+        return view('admin.municipio.index')->with('municipio', $municipio);
     }
 
     public function getMunicipios(Request $request)
     {
         if($request->ajax())
         {
-            $rpta = $municipio::select('id','mun_nombre')->where('mun_estado',1)->where('provincia_id','=', $request->provinciaID)->orderBy('mun_nombre','ASC')->get();
+            $rpta = Municipio::select('id','mun_nombre')->where('mun_estado',1)->where('provincia_id','=', $request->provinciaID)->orderBy('mun_nombre','ASC')->get();
             return response()->json($rpta);
         }
+        else
+            return null;
     }
 
     public function create()

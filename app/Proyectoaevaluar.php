@@ -10,7 +10,7 @@ use Storage;
 class Proyectoaevaluar extends Model
 {
     protected $table = 'proyectos_aevaluar';
-    protected $fillable = ['proy_codigo','proy_hr','entidad_id','unidad_id','proy_sigla','departamento_id','provincia_id','municipio_id','proy_responsable','proy_monto','proy_tiempo','proy_obs','proy_archivo','user_registra','user_actualiza','created_at','updated_at'];
+    protected $fillable = ['proy_codigo','proy_hr','entidad_id','unidad_id','proy_sigla','departamento_id','provincia_id','municipio_id[]','proy_responsable','proy_monto','proy_tiempo','proy_obs','proy_archivo','user_registra','user_actualiza','created_at','updated_at'];
 
     public function entidad()
     {

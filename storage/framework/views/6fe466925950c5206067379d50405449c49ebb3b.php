@@ -136,7 +136,7 @@
 						<div class="input-group-addon">
 							<i class="fa fa-th"></i>
 						</div>
-						<?php echo Form::select('municipio_id',['-' => 'Seleccione'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione']); ?>
+						<?php echo Form::select('municipio_id[]',['-' => 'Seleccione'], null, ['class' => 'form-control select2', 'multiple' => 'multiple', 'data-placeholder' => 'Seleccione', 'id' => 'municipio_id']); ?>
 
 					</div>
 					<span id="msg-error7" class="help-block" style="display:none; color:red" role="alert">

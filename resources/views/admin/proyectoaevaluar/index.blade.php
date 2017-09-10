@@ -68,7 +68,7 @@
                 <td align="center" valign="middle">{{ $item->proy_hr }}</td>
 				<td>{{ $item->entidad->ent_nombre }}</td>
 				<td style="width:50px !important;">{{ $item->eunidad->uni_nombre }}</td>
-                <td>{{ $item->departamento->dep_nombre.' '.$item->provincia->prov_nombre.' '.$item->municipio->mun_nombre }}</td>
+                <td>{!! ($item->departamento->dep_nombre.'<br>'.$item->provincia->prov_nombre.'<br>'.$item->municipio_id) !!}</td>
                 <td align="right">{{ number_format($item->proy_monto, 2, ',', '.').' Bs.' }}</td>
                 <td>
 					@if($item->proy_archivo)
@@ -109,8 +109,8 @@
             $("select[name=unidad_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Proponente</option>");
             $("select[name=provincia_id]").empty();
             $("select[name=provincia_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Provincia</option>");
-            $("select[name=municipio_id]").empty();
-            $("select[name=municipio_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Municipio</option>");
+            $("#municipio_id").empty();
+            $("#municipio_id").append("<option value='' disabled selected style='display:none;'>Seleccione Municipio</option>");
             //Entidades
             $.ajax({
                 url: "{{ url('/getEntidad') }}",
@@ -181,10 +181,11 @@
                     datatype: "json",
                     data: {"provinciaID" : provinciaID},
                     success: function(rpta){
-                        $("select[name=municipio_id]").empty();
-                        $("select[name=municipio_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Municipio</option>");
+                        $("select[id=municipio_id]").empty();
+                        $("select[id=municipio_id]").append("<option value='' disabled selected style='display:none;'>Seleccione Municipio</option>");
+                    
                         $.each(rpta, function(index, value){
-                            $("select[name=municipio_id]").append("<option value='" + value['id'] + "'>" + value['mun_nombre'] + "</option>");
+                            $("select[id=municipio_id]").append("<option value='" + value['mun_nombre'] + "'>" + value['mun_nombre'] + "</option>");
                         });
                     }
                 });
@@ -217,7 +218,7 @@
                         else
                         {
                             //var msg = data.success;
-                            toastr["error"]("No se puede registrar el proyecto.", "Error en Registro");
+                            toastr["error"](data.success, "Error en Registro");
                         }
                     },
                     error:function(data){

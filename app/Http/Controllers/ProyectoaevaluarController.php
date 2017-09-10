@@ -46,6 +46,12 @@ class ProyectoaevaluarController extends Controller
             try
             {
                 $proyecto = new Proyectoaevaluar($request->all());
+                $stringMunicipios = "";
+                for($position = 0; $position < count($request->input('municipio_id')); $position++)
+                {
+                    $stringMunicipios.= $request->input('municipio_id')[$position].", ";
+                }
+                $proyecto->municipio_id = $stringMunicipios;
                 $proyecto->user_registra = Auth::user()->id;
                 $proyecto->user_actualiza = Auth::user()->id;
                 $proyecto->save();
