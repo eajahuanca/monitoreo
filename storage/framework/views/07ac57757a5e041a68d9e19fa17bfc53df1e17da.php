@@ -70,5 +70,24 @@
             $('#example').DataTable();
         } );
     </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <?php if(Session::get('estado')=="1"): ?>
+                toastr["success"]("<?php echo e(Session::get('title')); ?>", "<?php echo e(Session::get('msg')); ?>");
+            <?php endif; ?>
+            <?php if(Session::get('estado')=="2"): ?>
+                toastr["error"]("<?php echo e(Session::get('title')); ?>", "<?php echo e(Session::get('msg')); ?>");
+            <?php endif; ?>
+            <?php if(Session::get('estado')): ?>
+                <?php echo e(Session::forget('estado')); ?>
+
+                <?php echo e(Session::forget('title')); ?>
+
+                <?php echo e(Session::forget('msg')); ?>
+
+            <?php endif; ?>
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.init', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

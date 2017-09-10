@@ -44,9 +44,9 @@ class MunicipioController extends Controller
 
     public function store(MunicipioRequest $request)
     {
-        $title = '';
-        $msg = '';
-        $estado = false;
+        $title = "";
+        $msg = "";
+        $estado = "";
         try
         {
             $municipio = new Municipio($request->all());
@@ -55,12 +55,13 @@ class MunicipioController extends Controller
             $municipio->save();
             $title = 'Registro de Municipio';
             $msg = 'Se realizo el registro de manera satisfactoria';
-            $estado = true;
+            $estado = "1";
         }
         catch(\Exception $ex)
         {
+            $estado = "2";
             $title = 'Error en Registro';
-            $msg = 'No se puede realizar el registro';
+            $msg = 'Msg: '.$ex->getMessage();
         }
         Session::put('estado', $estado);
         Session::put('title', $title);
@@ -79,23 +80,24 @@ class MunicipioController extends Controller
 
     public function update(MunicipioRequest $request, $id)
     {
-        $estado = false;
-        $title = '';
-        $msg = '';
+        $estado = "";
+        $title = "";
+        $msg = "";
         try
         {
             $municipio = Municipio::find($id);
             $municipio->fill($request->all());
             $municipio->user_actualiza = Auth::user()->id;
             $municipio->update();
-            $estado = true;
+            $estado = "1";
             $title = 'Actualización de Municipio';
             $msg = 'Se realizo la actualización de manera satisfactoria.';
         }
         catch(\Exception $ex)
         {
+            $estado = "2";
             $title = 'Error en Actualización';
-            $msg = 'No se puede actualizar el Municipio.';
+            $msg = 'Msg: '.$ex->getMessage();
         }
         Session::put('estado', $estado);
         Session::put('title', $title);

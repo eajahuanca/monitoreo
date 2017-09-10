@@ -30,4 +30,11 @@
             $('.select2').select2();
         })
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            @if(count($errors)>0)
+                toastr["error"]("Validación de Campos", "Verifique los campos.");
+            @endif
+        });
+    </script>
 @endsection

@@ -40,9 +40,9 @@ class EntidadController extends Controller
 
     public function store(EntidadRequest $request)
     {
-        $title = '';
-        $msg = '';
-        $estado = false;
+        $title = "";
+        $msg = "";
+        $estado = "";
         try
         {
             $entidad = new Entidad($request->all());
@@ -51,12 +51,13 @@ class EntidadController extends Controller
             $entidad->save();
             $title = 'Registro de Entidad';
             $msg = 'Se realizo el registro de manera satisfactoria';
-            $estado = true;
+            $estado = "1";
         }
         catch(\Exception $ex)
         {
+            $estado = "2";
             $title = 'Error en Registro';
-            $msg = 'No se puede realizar el registro';
+            $msg = 'Msg: '.$ex->getMessage();
         }
         Session::put('estado', $estado);
         Session::put('title', $title);
@@ -72,23 +73,24 @@ class EntidadController extends Controller
 
     public function update(EntidadRequest $request, $id)
     {
-        $estado = false;
-        $title = '';
-        $msg = '';
+        $estado = "";
+        $title = "";
+        $msg = "";
         try
         {
             $entidad = Entidad::find($id);
             $entidad->fill($request->all());
             $entidad->user_actualiza = Auth::user()->id;
             $entidad->update();
-            $estado = true;
+            $estado = "1";
             $title = 'Actualización de Entidad';
             $msg = 'Se realizo la actualización de manera satisfactoria.';
         }
         catch(\Exception $ex)
         {
+            $estado = "2";
             $title = 'Error en Actualización';
-            $msg = 'No se puede actualizar la Entidad.';
+            $msg = 'Msg: '.$ex->getMessage();
         }
         Session::put('estado', $estado);
         Session::put('title', $title);

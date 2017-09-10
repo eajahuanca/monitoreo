@@ -42,9 +42,9 @@ class EunidadController extends Controller
 
     public function store(UnidadRequest $request)
     {
-        $title = '';
-        $msg = '';
-        $estado = false;
+        $title = "";
+        $msg = "";
+        $estado = "";
         try
         {
             $unidad = new Eunidad($request->all());
@@ -53,12 +53,13 @@ class EunidadController extends Controller
             $unidad->save();
             $title = 'Registro de Unidad';
             $msg = 'Se realizo el registro de manera satisfactoria';
-            $estado = true;
+            $estado = "1";
         }
         catch(\Exception $ex)
         {
+            $estado = "2";
             $title = 'Error en Registro';
-            $msg = 'No se puede realizar el registro';
+            $msg = 'Msg: '.$ex->getMessage();
         }
         Session::put('estado', $estado);
         Session::put('title', $title);
@@ -77,23 +78,24 @@ class EunidadController extends Controller
 
     public function update(UnidadRequest $request, $id)
     {
-        $estado = false;
-        $title = '';
-        $msg = '';
+        $estado = "";
+        $title = "";
+        $msg = "";
         try
         {
             $unidad = Eunidad::find($id);
             $unidad->fill($request->all());
             $unidad->user_actualiza = Auth::user()->id;
             $unidad->update();
-            $estado = true;
+            $estado = "1";
             $title = 'Actualización de Unidad';
             $msg = 'Se realizo la actualización de manera satisfactoria.';
         }
         catch(\Exception $ex)
         {
+            $estado = "2";
             $title = 'Error en Actualización';
-            $msg = 'No se puede actualizar la Unidad.';
+            $msg = 'Msg: '.$ex->getMessage();
         }
         Session::put('estado', $estado);
         Session::put('title', $title);

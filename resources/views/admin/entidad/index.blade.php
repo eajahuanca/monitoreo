@@ -72,4 +72,20 @@
             $('#example').DataTable();
         } );
     </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            @if(Session::get('estado')=="1")
+                toastr["success"]("{{ Session::get('title') }}", "{{ Session::get('msg') }}");
+            @endif
+            @if(Session::get('estado')=="2")
+                toastr["error"]("{{ Session::get('title') }}", "{{ Session::get('msg') }}");
+            @endif
+            @if(Session::get('estado'))
+                {{ Session::forget('estado') }}
+                {{ Session::forget('title') }}
+                {{ Session::forget('msg') }}
+            @endif
+        });
+    </script>
 @endsection
