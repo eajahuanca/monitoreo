@@ -18,10 +18,18 @@ Route::get('/', function () {
 Route::auth();
 
 //Route::resource('/home', 'HomeController@index');
-Route::resource('/dashboard', 'DashboardController');
-Route::resource('/aevaluar', 'ProyectoaevaluarController');
+//Carga de Datos Via JSON
+
 Route::get('/getEntidad', 'EntidadController@getEntidades');
 Route::get('/getDepartamento', 'DepartamentoController@getDepartamentos');
 Route::get('/getUnidad/{id}', 'EunidadController@getUnidades');
 Route::get('/getProvincia/{id}', 'ProvinciaController@getProvincias');
 Route::get('/getMunicipio/{id}', 'MunicipioController@getMunicipios');
+
+//Rutas REST
+Route::resource('/dashboard', 'DashboardController');
+Route::resource('/aevaluar', 'ProyectoaevaluarController');
+Route::resource('/entidad', 'EntidadController');
+Route::resource('/unidad', 'UnidadController');
+Route::resource('/provincia', 'ProvinciaController');
+Route::resource('/municipio', 'MunicipioController');

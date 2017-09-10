@@ -30,9 +30,9 @@
                 <th style="text-align: center !important;">Nombre entidad</th>
                 <th style="text-align: center !important;">Sigla</th>
                 <th style="text-align: center !important;">Estado</th>
-                <th style="text-align: center !important;">Observaciones</th>
                 <th style="text-align: center !important;">Registrado</th>
                 <th style="text-align: center !important;">Actualizado</th>
+                <th style="text-align: center !important;">Observaciones</th>
             </tr>
         </thead>
         <tbody>
@@ -42,7 +42,7 @@
                 <td>{{ $contadorFilas++ }}</td>
                 <td align="center">
                     <div class="form-horizontal">
-                        <span class="hint--top  hint--info" aria-label="Actualizar"><a href="{{ route('banner.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></span>
+                        <span class="hint--top  hint--info" aria-label="Actualizar"><a href="{{ route('entidad.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></span>
                     </div>
                 </td>
                 <td>{{ $item->ent_nombre }}</td>
@@ -54,9 +54,9 @@
                         <span class="hint--top  hint--error" aria-label="Entidad Bloqueado"><button class="btn btn-danger btn-xs">Bloqueado</button></span>
                     @endif
                 </td>
+                <td align="center">{!! $item->userRegistra->us_nombre.' '.$item->userRegistra->us_paterno.' '.$item->userRegistra->us_materno.'<br>'.$item->created_at->diffForHumans() !!}</td>
+                <td align="center">{!! $item->userActualiza->us_nombre.' '.$item->userActualiza->us_paterno.' '.$item->userActualiza->us_materno.'<br>'.$item->updated_at->diffForHumans() !!}</td>
 				<td>{{ $item->ent_obs }}</td>
-                <td align="center">{!! ($item->user->us_nombre.' '.$item->user->us_paterno.' '.$item->user->us_materno).'<br>'.$item->created_at->diffForHumans() !!}</td>
-                <td align="center">{!! ($item->user->us_nombre.' '.$item->user->us_paterno.' '.$item->user->us_materno).'<br>'.$item->updated_at->diffForHumans() !!}</td>
             </tr>
             @endforeach
         </tbody>

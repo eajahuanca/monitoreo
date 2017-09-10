@@ -28,6 +28,36 @@
                     <i class="fa fa-list"></i> <span>Proyectos a Evaluar</span>
                 </a>
             </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-gear"></i> <span>Parametrizaciones</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="<?php echo e(url('/entidad')); ?>">
+                            <i class="fa fa-list"></i> <span>Entidades (UE)</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo e(url('/unidad')); ?>">
+                            <i class="fa fa-list"></i> <span>Unidades</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo e(url('/provincia')); ?>">
+                            <i class="fa fa-list"></i> <span>Provincias</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="<?php echo e(url('/municipio')); ?>">
+                            <i class="fa fa-list"></i> <span>Municipios</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </section>
     <!-- /.sidebar -->
