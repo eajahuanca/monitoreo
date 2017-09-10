@@ -35,6 +35,6 @@ class MunicipioRequest extends Request
             'provincia_id.required' => 'El Campo Provincia es requerido',
             'mun_nombre.required' => 'El Campo Nombre de Municipio es requerido',
             'mun_nombre.min' => 'El Campo Nombre de Municipio debe contener como minimo 5 caracteres'
-        ]
+        ];
     }
 }

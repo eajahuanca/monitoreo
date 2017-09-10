@@ -35,11 +35,11 @@ class MunicipioController extends Controller
         else
             return null;
     }
-
+    
     public function create()
     {
         $provincia = Provincia::where('prov_estado','=',1)->orderBy('prov_nombre','ASC')->lists('prov_nombre','id');
-        return view('admin.unidad.create')->with('provincia', $provincia);
+        return view('admin.municipio.create')->with('provincia', $provincia);
     }
 
     public function store(MunicipioRequest $request)

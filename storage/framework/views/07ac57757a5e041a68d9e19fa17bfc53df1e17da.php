@@ -7,8 +7,6 @@
     <link href="<?php echo e(asset('plugin/plugins/datatables/dataTables.bootstrap.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('plugin/plugins/datatables/responsive/dataTables.bootstrap4.min.css')); ?>" rel="stylesheet">
     <link href="<?php echo e(asset('plugin/plugins/datatables/responsive/responsive.bootstrap4.min.css')); ?>" rel="stylesheet">
-     <!-- Select2 -->
-    <link rel="stylesheet" href="<?php echo e(asset('plugin/plugins/select2/select2.min.css')); ?>">
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('ContenidoPagina'); ?>
@@ -66,13 +64,7 @@
     <script src="<?php echo e(asset('plugin/plugins/datatables/responsive/dataTables.bootstrap4.min.js')); ?>"></script>
     <script src="<?php echo e(asset('plugin/plugins/datatables/responsive/dataTables.responsive.min.js')); ?>"></script>
     <script src="<?php echo e(asset('plugin/plugins/datatables/responsive/responsive.bootstrap4.min.js')); ?>"></script>
-    <!-- Select2 -->
-    <script src="<?php echo e(asset('plugin/plugins/select2/select2.full.min.js')); ?>"></script>
-    <script type="text/javascript">
-        $(function () {
-            $('.select2').select2();
-        })
-    </script>
+
     <script type="text/javascript">
         $(document).ready(function() {
             $('#example').DataTable();
