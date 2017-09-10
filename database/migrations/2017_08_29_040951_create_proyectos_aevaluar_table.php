@@ -21,7 +21,7 @@ class CreateProyectosAevaluarTable extends Migration
             $table->string('proy_sigla');
             $table->integer('departamento_id')->unsigned();
             $table->integer('provincia_id')->unsigned();
-            $table->integer('municipio_id')->unsigned();
+            $table->text('municipio_id');
             $table->integer('proy_responsable')->unsigned();
             $table->decimal('proy_monto',18,2);
             $table->integer('proy_tiempo');
@@ -36,7 +36,6 @@ class CreateProyectosAevaluarTable extends Migration
             $table->foreign('unidad_id')->references('id')->on('entidad_unidades');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
             $table->foreign('provincia_id')->references('id')->on('provincias');
-            $table->foreign('municipio_id')->references('id')->on('municipios');
             $table->foreign('proy_responsable')->references('id')->on('users');
             $table->foreign('user_registra')->references('id')->on('users');
             $table->foreign('user_actualiza')->references('id')->on('users');
