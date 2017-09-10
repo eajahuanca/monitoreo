@@ -21,7 +21,7 @@ class MunicipioController extends Controller
 
     public function index()
     {
-        $$municipio = Municipio::orderBy('created_at','DESC')->get();
+        $municipio = Municipio::orderBy('created_at','DESC')->get();
         return view('admin.municipio.index')->with('municipio', $municipio);
     }
 

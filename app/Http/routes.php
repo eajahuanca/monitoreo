@@ -30,6 +30,6 @@ Route::get('/getMunicipio/{id}', 'MunicipioController@getMunicipios');
 Route::resource('/dashboard', 'DashboardController');
 Route::resource('/aevaluar', 'ProyectoaevaluarController');
 Route::resource('/entidad', 'EntidadController');
-Route::resource('/unidad', 'UnidadController');
+Route::resource('/unidad', 'EunidadController');
 Route::resource('/provincia', 'ProvinciaController');
 Route::resource('/municipio', 'MunicipioController');

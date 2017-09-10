@@ -38,22 +38,22 @@
                 <ul class="treeview-menu">
                     <li>
                         <a href="{{ url('/entidad') }}">
-                            <i class="fa fa-list"></i> <span>Entidades (UE)</span>
+                            <i class="fa fa-bullseye"></i> <span>Entidades (UE)</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/unidad') }}">
-                            <i class="fa fa-list"></i> <span>Unidades</span>
+                            <i class="fa fa-indent"></i> <span>Unidades</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/provincia') }}">
-                            <i class="fa fa-list"></i> <span>Provincias</span>
+                            <i class="fa fa-object-ungroup"></i> <span>Provincias</span>
                         </a>
                     </li>
                     <li>
                         <a href="{{ url('/municipio') }}">
-                            <i class="fa fa-list"></i> <span>Municipios</span>
+                            <i class="fa fa-paper-plane-o"></i> <span>Municipios</span>
                         </a>
                     </li>
                 </ul>

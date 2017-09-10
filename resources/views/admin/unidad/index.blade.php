@@ -1,9 +1,9 @@
 @extends('layouts.init')
 
-@section('FormularioTitulo','Entidad')
-@section('FormularioDescripcion','en este formulario se pueden observar todas las entidades')
-@section('FormularioActual','Entidades')
-@section('FormularioDetalle','Entidades')
+@section('FormularioTitulo','Unidades Proponentes')
+@section('FormularioDescripcion','en este formulario se pueden observar todas las unidades proponentes')
+@section('FormularioActual','Unidades')
+@section('FormularioDetalle','Unidades')
 
 @section('stylesheet')
     <link href="{{ asset('plugin/plugins/datatables/dataTables.bootstrap.css') }}" rel="stylesheet">
@@ -16,7 +16,7 @@
     <div class="form-group">
         <div class="row">
             <div class="col-xs-12 col-md-12">
-                <span class="hint--top  hint--success" aria-label="Registrar nueva entidad"><a  href="{{ route('entidad.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva Entidad</a></span>
+                <span class="hint--top  hint--success" aria-label="Registrar nueva unidad"><a  href="{{ route('unidad.create') }}" class="btn btn-success"><i class="fa fa-plus"></i> Nueva Unidad</a></span>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
                 <th style="text-align: center !important;">#</th>
                 <th style="text-align: center !important;">Acción</th>
                 <th style="text-align: center !important;">Nombre entidad</th>
-                <th style="text-align: center !important;">Sigla</th>
+                <th style="text-align: center !important;">Unidad</th>
                 <th style="text-align: center !important;">Estado</th>
                 <th style="text-align: center !important;">Registrado</th>
                 <th style="text-align: center !important;">Actualizado</th>
@@ -35,21 +35,21 @@
         </thead>
         <tbody>
             <?php $contadorFilas = 1;?>
-            @foreach($entidad as $item)
+            @foreach($unidad as $item)
             <tr id="{{ $item->id }}">
                 <td>{{ $contadorFilas++ }}</td>
                 <td align="center">
                     <div class="form-horizontal">
-                        <span class="hint--top  hint--info" aria-label="Actualizar"><a href="{{ route('entidad.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></span>
+                        <span class="hint--top  hint--info" aria-label="Actualizar"><a href="{{ route('unidad.edit', $item->id) }}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i></a></span>
                     </div>
                 </td>
-                <td>{{ $item->ent_nombre }}</td>
-                <td>{{ $item->ent_sigla }}</td>
+                <td>{{ $item->entidad->ent_nombre }}</td>
+                <td>{{ $item->uni_nombre }}</td>
                 <td align="center">
-                    @if($item->ent_estado)
-                        <span class="hint--top  hint--warning" aria-label="Entidad Habilitado"><button class="btn btn-warning btn-xs">Habilitado</button></span>
+                    @if($item->uni_estado)
+                        <span class="hint--top  hint--warning" aria-label="Unidad Habilitado"><button class="btn btn-warning btn-xs">Habilitado</button></span>
                     @else
-                        <span class="hint--top  hint--error" aria-label="Entidad Bloqueado"><button class="btn btn-danger btn-xs">Bloqueado</button></span>
+                        <span class="hint--top  hint--error" aria-label="Unidad Bloqueado"><button class="btn btn-danger btn-xs">Bloqueado</button></span>
                     @endif
                 </td>
                 <td align="center">{!! $item->userRegistra->us_nombre.' '.$item->userRegistra->us_paterno.' '.$item->userRegistra->us_materno.'<br>'.$item->created_at->diffForHumans() !!}</td>
