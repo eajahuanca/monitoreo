@@ -29,5 +29,12 @@
             $('.select2').select2();
         })
     </script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            <?php if(count($errors)>0): ?>
+                toastr["error"]("Validación de Campos", "Verifique los campos.");
+            <?php endif; ?>
+        });
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.init', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

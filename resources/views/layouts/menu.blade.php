@@ -22,12 +22,68 @@
                     <i class="fa fa-home"></i> <span>Dashbord</span>
                 </a>
             </li>
-            
+
             <li>
-                <a href="{{ url('/aevaluar') }}">
-                    <i class="fa fa-list"></i> <span>Proyectos a Evaluar</span>
+                <a href="{{ url('/home') }}">
+                    <i class="fa fa-legal"></i> <span>Base Legal</span>
                 </a>
             </li>
+
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-gear"></i> <span>Aprobación de Prog. y Proy.</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li>
+                        <a href="{{ url('/aevaluar') }}">
+                            <i class="fa fa-gg-circle"></i> <span>Solicitud</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/home') }}">
+                            <i class="fa fa-gg-circle"></i> <span>Evaluación de Solicitud</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/home') }}">
+                            <i class="fa fa-gg-circle"></i> <span>Aprobación del Comite</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('/home') }}">
+                            <i class="fa fa-gg-circle"></i> <span>Firma de Convenio</span>
+                        </a>
+                    </li>        
+                </ul>
+            </li>
+
+            <li>
+                <a href="{{ url('/entidad') }}">
+                    <i class="fa fa-bars"></i> <span>Seguimiento de Proyectos</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/unidad') }}">
+                    <i class="fa fa-indent"></i> <span>Monitoreo de Proyectos</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/provincia') }}">
+                    <i class="fa fa-object-ungroup"></i> <span>Cierre de Proyectos</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('/municipio') }}">
+                    <i class="fa fa-paper-plane-o"></i> <span>Auditoria de Proyectos</span>
+                </a>
+            </li>
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-gear"></i> <span>Parametrizaciones</span>
