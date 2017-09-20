@@ -26,6 +26,6 @@ class Entidad extends Model
 
     public function proyectoaevaluar()
     {
-        return $this->hasMany('App\Proyectoaevaluar');
+        return $this->hasMany('App\Proyectoaevaluar'); 
     }
 }
