@@ -24,7 +24,7 @@
             </li>
 
             <li>
-                <a href="{{ url('/home') }}">
+                <a href="{{ url('/legal') }}">
                     <i class="fa fa-legal"></i> <span>Base Legal</span>
                 </a>
             </li>

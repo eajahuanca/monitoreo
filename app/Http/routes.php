@@ -33,3 +33,4 @@ Route::resource('/entidad', 'EntidadController');
 Route::resource('/unidad', 'EunidadController');
 Route::resource('/provincia', 'ProvinciaController');
 Route::resource('/municipio', 'MunicipioController');
+Route::resource('/legal', 'LegalController');
