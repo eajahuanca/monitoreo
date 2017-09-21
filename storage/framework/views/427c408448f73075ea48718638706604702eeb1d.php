@@ -24,7 +24,7 @@
             </li>
 
             <li>
-                <a href="<?php echo e(url('/home')); ?>">
+                <a href="<?php echo e(url('/legal')); ?>">
                     <i class="fa fa-legal"></i> <span>Base Legal</span>
                 </a>
             </li>
